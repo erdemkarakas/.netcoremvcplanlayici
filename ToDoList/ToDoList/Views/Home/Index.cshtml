@@ -1,0 +1,342 @@
+﻿@model List<ToDoList.Models.Gorev>
+
+@{
+    ViewData["Title"] = "Yapılacak İşler";
+}
+
+
+
+<link rel="stylesheet" href="~/tema/select2/select2/dist/css/select2.min.css">
+
+<div class="content-i">
+    <div class="content-box">
+        <!--START - To Do Application-->
+        <div class="todo-app-w">
+
+            <div class="todo-content">
+                <h4 class="todo-content-header">
+                    <i class="os-icon os-icon-ui-83"></i><span>Piton Planlayıcım</span>
+                </h4>
+                <div class="all-tasks-w">
+                    <div class="tasks-section">
+                        <!--START - TASKS HEADER-->
+                        <div class="tasks-header-w">
+                            <a class="tasks-header-toggler" href="#"><i class="os-icon os-icon-ui-23"></i></a>
+                            <h5 class="tasks-header">
+                                Günlük
+                            </h5>
+                            <span class="tasks-sub-header"></span><a class="add-task-btn" data-target="#taskModal" onclick="turekle('Günlük')" data-toggle="modal" href="#"><i class="os-icon os-icon-ui-22"></i><span>Plan Ekle</span></a>
+                        </div>
+                        <!--END - TASKS HEADER-->
+                        <div class="tasks-list-w">
+
+                            @if (Model == null)
+                            {
+
+                            }
+                            else
+                            {
+                                @foreach (var item in Model.GroupBy(x => x.oncelik).Select(x => x.Key).ToList())
+                                {
+                                    <div class="tasks-list-header">
+                                        @item
+                                    </div>
+
+
+                                    <ul class="tasks-list">
+
+                                        @foreach (var inneritem in Model.Where(x => x.tur == "Günlük" & x.oncelik == item).OrderByDescending(x => x.eklenmeTarihi))
+                                        {
+
+                                            <li class="draggable-task danger">
+                                                <div class="todo-task-drag drag-handle">
+                                                    <i class="os-icon os-icon-hamburger-menu-2 drag-handle"></i>
+                                                </div>
+                                                <div class="todo-task">
+                                                    <span contenteditable="true">@inneritem.konu -<strong>Eklenme Tarihi:@inneritem.eklenmeTarihi.ToShortDateString()</strong></span>
+                                                    <div class="todo-task-buttons">
+                                                        <a class="task-btn-edit" data-konu="@inneritem.konu" data-aciklama="@inneritem.aciklama" data-bitistarihi="@inneritem.bitisTarihi" data-id="@inneritem.id" data-target="#taskModal" data-toggle="modal" onclick="bilgiYukle(this)" href="#"><span>Düzenle</span><i class="os-icon os-icon-ui-49"></i></a>
+                                                        <a class="" data-id="@inneritem.id" data-planadi="@inneritem.konu" onclick="silmekistiyorum(this)" href="#"><span>Sil</span><i class="os-icon os-icon-ui-15"></i></a>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        }
+
+
+
+                                    </ul>
+                                }
+                            }
+
+
+
+                        </div>
+                        <div class="tasks-header-w">
+                            <a class="tasks-header-toggler" href="#"><i class="os-icon os-icon-ui-23"></i></a>
+                            <h5 class="tasks-header">
+                                Haftalık
+                            </h5>
+                            <span class="tasks-sub-header"></span><a class="add-task-btn" data-target="#taskModal" onclick="turekle('Haftalık')" data-toggle="modal" href="#"><i class="os-icon os-icon-ui-22"></i><span>Plan Ekle</span></a>
+                        </div>
+                        <!--END - TASKS HEADER-->
+                        <div class="tasks-list-w">
+
+                            @if (Model == null)
+                            {
+
+                            }
+                            else
+                            {
+
+                                @foreach (var item in Model.GroupBy(x => x.oncelik).Select(x => x.Key).ToList())
+                                {
+                                    <div class="tasks-list-header">
+                                        @item
+                                    </div>
+
+
+                                    <ul class="tasks-list">
+
+                                        @foreach (var inneritem in Model.Where(x => x.tur == "Haftalık" & x.oncelik == item).OrderByDescending(x => x.eklenmeTarihi))
+                                        {
+
+                                            <li class="draggable-task danger">
+                                                <div class="todo-task-drag drag-handle">
+                                                    <i class="os-icon os-icon-hamburger-menu-2 drag-handle"></i>
+                                                </div>
+                                                <div class="todo-task">
+                                                    <span contenteditable="true">@inneritem.konu -<strong> @inneritem.eklenmeTarihi</strong> </span>
+                                                    <div class="todo-task-buttons">
+                                                        <a class="task-btn-edit" data-konu="@inneritem.konu" data-aciklama="@inneritem.aciklama" data-bitistarihi="@inneritem.bitisTarihi" data-id="@inneritem.id" data-target="#taskModal" data-toggle="modal" onclick="bilgiYukle(this)" href="#"><span>Düzenle</span><i class="os-icon os-icon-ui-49"></i></a>
+                                                        <a class="" data-id="@inneritem.id" data-planadi="@inneritem.konu" onclick="silmekistiyorum(this)" href="#"><span>Sil</span><i class="os-icon os-icon-ui-15"></i></a>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        }
+
+
+
+                                    </ul>
+                                }
+                            }
+                        </div>
+                        <div class="tasks-header-w">
+                            <a class="tasks-header-toggler" href="#"><i class="os-icon os-icon-ui-23"></i></a>
+                            <h5 class="tasks-header">
+                                Aylık
+                            </h5>
+                            <span class="tasks-sub-header"></span><a class="add-task-btn" data-target="#taskModal" onclick="turekle('Aylık')" data-toggle="modal" href="#"><i class="os-icon os-icon-ui-22"></i><span>Plan Ekle</span></a>
+                        </div>
+                        <!--END - TASKS HEADER-->
+                        <div class="tasks-list-w">
+
+                            @if (Model == null)
+                            {
+
+                            }
+                            else
+                            {
+
+                                @foreach (var item in Model.GroupBy(x => x.oncelik).Select(x => x.Key).ToList())
+                                {
+                                    <div class="tasks-list-header">
+                                        @item
+                                    </div>
+
+
+                                    <ul class="tasks-list">
+
+                                        @foreach (var inneritem in Model.Where(x => x.tur == "Aylık" & x.oncelik == item).OrderByDescending(x => x.eklenmeTarihi))
+                                        {
+
+                                            <li class="draggable-task danger">
+                                                <div class="todo-task-drag drag-handle">
+                                                    <i class="os-icon os-icon-hamburger-menu-2 drag-handle"></i>
+                                                </div>
+                                                <div class="todo-task">
+                                                    <span contenteditable="true">@inneritem.konu -<strong> @inneritem.eklenmeTarihi</strong> </span>
+                                                    <div class="todo-task-buttons">
+                                                        <a class="task-btn-edit" data-konu="@inneritem.konu" data-aciklama="@inneritem.aciklama" data-bitistarihi="@inneritem.bitisTarihi" data-id="@inneritem.id" data-target="#taskModal" data-toggle="modal" onclick="bilgiYukle(this)" href="#"><span>Düzenle</span><i class="os-icon os-icon-ui-49"></i></a>
+                                                        <a class="" data-id="@inneritem.id" data-planadi="@inneritem.konu" onclick="silmekistiyorum(this)" href="#"><span>Sil</span><i class="os-icon os-icon-ui-15"></i></a>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        }
+
+
+
+                                    </ul>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <!--Modal - Edit Task-->
+                    <div aria-hidden="true" class="modal fade" id="taskModal" role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header faded smaller">
+                                    <div class="modal-title">
+                                        <span>Plan sahibi:</span><img alt="" class="avatar" src="img/avatar1.jpg"><span>Bitiş Tarihi: </span><strong></strong>
+                                    </div>
+                                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input id="editmodalid" hidden type="text" />
+
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="">Konu</label><input class="form-control" id="planKonu" placeholder="Plan konusu gir" type="text" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Açıklama</label><textarea class="form-control" name="" id="planAciklama" placeholder="Plan açıklamanız." rows="3"></textarea>
+                                        </div>
+
+                                        <input type="text" id="tur" hidden value="">
+
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for=""> Bitiş Tarihi</label>
+                                                    <div class="date-input">
+                                                        <input class="single-daterange form-control" placeholder="Date of birth" type="text" id="bitisTarihi" value="04/12/1978">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" style="margin-top:25px">
+                                                <div class="form-group">
+
+                                                    @Html.DropDownList("oncelik", new SelectList(ViewBag.oncelik, "", ""), "Seçiniz...", new { @style = "width: 100%;", @class = "form-control select2", @id = "oncelik" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer buttons-on-left">
+                                    <button class="btn btn-teal" onclick="planEkle()" type="button"> Kayıt et</button><button class="btn btn-link" data-dismiss="modal" type="button"> İptal</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Modal - delete Task-->
+
+                    <div aria-hidden="true" class="modal fade" id="taskdeleteModal" role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header faded smaller">
+                                    <div class="modal-title">
+                                        <span>Planı Silmek istediğinize Emin misiniz?</span>
+                                    </div>
+                                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
+                                </div>
+                                <input id="deletemodalid" hidden type="text" />
+                                <div class="modal-body" id="planadimodal">
+                                    <strong>Plan Adı : </strong><span></span>
+                                </div>
+
+                                <div class="modal-footer buttons-on-left">
+                                    <button class="btn btn-teal" onclick="planSil()" type="button">Evet</button><button class="btn btn-link" data-dismiss="modal" type="button"></button>
+                                    <button class="btn btn-teal" type="button">Hayır</button><button class="btn btn-link" data-dismiss="modal" type="button"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END - To Do Application-->
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="~/tema/select2/select2/dist/js/select2.full.min.js"></script>
+
+    <script>
+
+        function turekle(elem) {
+
+            document.getElementById("tur").value = elem
+
+            document.getElementById("editmodalid").value = "";
+            document.getElementById("planKonu").value = "";
+            document.getElementById("planAciklama").value = "";
+            document.getElementById("bitisTarihi").value = "";
+        }
+
+
+        function silmekistiyorum(elem) {
+
+            var pa = $(elem).data('planadi');
+            var id = $(elem).data('id');
+
+            document.getElementById("deletemodalid").value = id;
+
+            $('#planadimodal span').text(pa);
+
+            $('#taskdeleteModal').modal('show');
+
+        }
+
+        function bilgiYukle(elem) {
+
+            document.getElementById("editmodalid").value = $(elem).data('id');;
+            document.getElementById("planKonu").value = $(elem).data('konu');;
+            document.getElementById("planAciklama").value = $(elem).data('aciklama');;
+            document.getElementById("bitisTarihi").value = $(elem).data('bitistarihi');;
+
+        }
+
+
+        function planEkle() {
+
+            var id = document.getElementById("editmodalid").value;
+
+
+            var bt = document.getElementById("bitisTarihi").value;
+            var pa = document.getElementById("planAciklama").value;
+            var pk = document.getElementById("planKonu").value;
+            var oncelik = document.getElementById("oncelik").value;
+            var tur = document.getElementById("tur").value;
+
+
+            $.post("/Home/taskkaydet", { 'id': id,'bitisTarihi': bt, 'planKonu': pk, 'planAciklama': pa, 'oncelik': oncelik, 'tur': tur }, function (deger) {
+                if (deger == true) {
+                    location.reload();
+                }
+                else {
+                    alert('yamram');
+                }
+
+            }).fail(function (response) {
+                alert('Error : ' + response.responseText);
+            });
+
+        }
+
+        function planSil() {
+
+            var id = document.getElementById("deletemodalid").value;
+
+            $.post("/Home/DeleteConfirmed", { 'id': id }, function (deger) {
+
+
+                $('#taskdeleteModal').modal('hide');
+
+                location.reload();
+
+
+            }).fail(function (response) {
+                alert('Error : ' + response.responseText);
+            });
+
+        }
+
+
+    </script>
