@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mZ/HeqpRc3ZlY1eIxl2MtpIuD8YF7r62L2TNjwnd4aKzg0XILgCkeATMvNcU75a1OjRxaEq0SPgXmGOO3F1WEA==",
+  "dgSpecHash": "qevH6u/3uVxjbqdc7BTrb3RbnawE96KZQrdW9snFkWEkAuVNEx1F2Abjtoyj3ujU4ED1yUP/X0lo0yG3UcKQjA==",
   "success": true,
   "projectFilePath": "C:\\Users\\erdem\\Desktop\\ToDoList - Son\\ToDoList\\ToDoList\\ToDoList.csproj",
   "expectedPackageFiles": [
@@ -52,6 +52,7 @@
     "C:\\Users\\erdem\\.nuget\\packages\\microsoft.visualstudio.web.codegenerators.mvc\\3.1.3\\microsoft.visualstudio.web.codegenerators.mvc.3.1.3.nupkg.sha512",
     "C:\\Users\\erdem\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\erdem\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\erdem\\.nuget\\packages\\moment.js\\2.27.0\\moment.js.2.27.0.nupkg.sha512",
     "C:\\Users\\erdem\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\erdem\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\erdem\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",

@@ -10,7 +10,7 @@
 
 <div class="content-i">
     <div class="content-box">
-        <!--START - To Do Application-->
+        <!--Başlangıç - Piton Planlayıcım-->
         <div class="todo-app-w">
 
             <div class="todo-content">
@@ -19,7 +19,7 @@
                 </h4>
                 <div class="all-tasks-w">
                     <div class="tasks-section">
-                        <!--START - TASKS HEADER-->
+                        <!--Görev Başlığı-->
                         <div class="tasks-header-w">
                             <a class="tasks-header-toggler" href="#"><i class="os-icon os-icon-ui-23"></i></a>
                             <h5 class="tasks-header">
@@ -27,7 +27,7 @@
                             </h5>
                             <span class="tasks-sub-header"></span><a class="add-task-btn" data-target="#taskModal" onclick="turekle('Günlük')" data-toggle="modal" href="#"><i class="os-icon os-icon-ui-22"></i><span>Plan Ekle</span></a>
                         </div>
-                        <!--END - TASKS HEADER-->
+                        <!--Göre Sonu-->
                         <div class="tasks-list-w">
 
                             @if (Model == null)
@@ -80,7 +80,7 @@
                             </h5>
                             <span class="tasks-sub-header"></span><a class="add-task-btn" data-target="#taskModal" onclick="turekle('Haftalık')" data-toggle="modal" href="#"><i class="os-icon os-icon-ui-22"></i><span>Plan Ekle</span></a>
                         </div>
-                        <!--END - TASKS HEADER-->
+                        <!--Görev Sonu-->
                         <div class="tasks-list-w">
 
                             @if (Model == null)
@@ -131,7 +131,7 @@
                             </h5>
                             <span class="tasks-sub-header"></span><a class="add-task-btn" data-target="#taskModal" onclick="turekle('Aylık')" data-toggle="modal" href="#"><i class="os-icon os-icon-ui-22"></i><span>Plan Ekle</span></a>
                         </div>
-                        <!--END - TASKS HEADER-->
+                        <!--Görev Sonu-->
                         <div class="tasks-list-w">
 
                             @if (Model == null)
@@ -176,13 +176,13 @@
                             }
                         </div>
                     </div>
-                    <!--Modal - Edit Task-->
+                    <!--Modal - Görev Gir-->
                     <div aria-hidden="true" class="modal fade" id="taskModal" role="dialog" tabindex="-1">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header faded smaller">
                                     <div class="modal-title">
-                                        <span>Plan sahibi:</span><img alt="" class="avatar" src="img/avatar1.jpg"><span>Bitiş Tarihi: </span><strong></strong>
+                                        <span>Plan sahibi:</span><img alt="" class="avatar" src="img/avatar1.jpg"><span>Erdem Karakaş </span><strong></strong>
                                     </div>
                                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true"> &times;</span></button>
                                 </div>
@@ -205,14 +205,14 @@
                                                 <div class="form-group">
                                                     <label for=""> Bitiş Tarihi</label>
                                                     <div class="date-input">
-                                                        <input class="single-daterange form-control" placeholder="Date of birth" type="text" id="bitisTarihi" value="04/12/1978">
+                                                        <input class="single-daterange form-control" placeholder="Date of birth" type="text" id="bitisTarihi" value="01/07/2020">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6" style="margin-top:25px">
                                                 <div class="form-group">
 
-                                                    @Html.DropDownList("oncelik", new SelectList(ViewBag.oncelik, "", ""), "Seçiniz...", new { @style = "width: 100%;", @class = "form-control select2", @id = "oncelik" })
+                                                    @Html.DropDownList("oncelik", new SelectList(ViewBag.oncelik, "", ""),  new { @style = "width: 100%;", @class = "form-control select2", @id = "oncelik" })
 
                                                 </div>
                                             </div>
@@ -226,7 +226,7 @@
                         </div>
                     </div>
 
-                    <!--Modal - delete Task-->
+                    <!--Modal - Görev Sil-->
 
                     <div aria-hidden="true" class="modal fade" id="taskdeleteModal" role="dialog" tabindex="-1">
                         <div class="modal-dialog" role="document">
@@ -251,7 +251,7 @@
                     </div>
                 </div>
             </div>
-            <!--END - To Do Application-->
+            <!--Son-->
         </div>
     </div>
 
